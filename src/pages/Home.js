@@ -4,7 +4,7 @@ import { Link,useParams } from 'react-router-dom';
 
 export default function () {
 
-    const [users,setUsers]=useState([]);
+    const [tasks,setUsers]=useState([]);
 
     const {id}=useParams()
 
@@ -29,24 +29,25 @@ export default function () {
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Completed</th>
+                    <th scope="col">DueTimeDate</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                       users.map((user,index)=>(
+                       tasks.map((task,index)=>(
                         <tr>
                             <th scope="row" key={index}>{index+1}</th>
-                            <td>{user.name}</td>
-                            <td>{user.username}</td>
-                            <td>{user.email}</td>
+                            <td>{task.title}</td>
+                            <td>{task.description}</td>
+                            <td>{task.completed}</td>
+                            <td>{task.dueDateTime}</td>
                             <td>
-                                <Link className='btn btn-primary mx-2' to={`/viewuser/${user.id}`}>View</Link>
-                                <Link className='btn btn-outline-primary mx-2' to={`edituser/${user.id}`}>Edit</Link>
-                                <button className='btn btn-danger mx-2' onClick={() => deleteUser(user.id)}>Delete</button>
+                                <Link className='btn btn-primary mx-2' to={`/viewtask/${task.id}`}>View</Link>
+                                <Link className='btn btn-outline-primary mx-2' to={`edittask/${task.id}`}>Edit</Link>
+                                <button className='btn btn-danger mx-2' onClick={() => deletetask(task.id)}>Delete</button>
                             </td>
                         </tr>
                        )) 
