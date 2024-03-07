@@ -4,7 +4,7 @@ import { Link,useParams } from 'react-router-dom';
 
 export default function () {
 
-    const [tasks,setUsers]=useState([]);
+    const [tasks,setTasks]=useState([]);
 
     const {id}=useParams()
 
@@ -14,10 +14,10 @@ export default function () {
 
     const loadUsers= async ()=>{
         const result= await axios.get("http://localhost:8080/api/tasks");
-        setUsers(result.data);
+        setTasks(result.data);
     };
 
-    const deleteUser=async (id)=>{
+    const deleteTask=async (id)=>{
         await axios.delete(`http://localhost:8080/api/tasks/${id}`)
         loadUsers( )
     }
@@ -47,7 +47,7 @@ export default function () {
                             <td>
                                 <Link className='btn btn-primary mx-2' to={`/viewtask/${task.id}`}>View</Link>
                                 <Link className='btn btn-outline-primary mx-2' to={`edittask/${task.id}`}>Edit</Link>
-                                <button className='btn btn-danger mx-2' onClick={() => deletetask(task.id)}>Delete</button>
+                                <button className='btn btn-danger mx-2' onClick={() => deleteTask(task.id)}>Delete</button>
                             </td>
                         </tr>
                        )) 
